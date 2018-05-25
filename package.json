@@ -1,5 +1,5 @@
 {
-  "name": "angular6-app",
+  "name": "ngrx-config-mgmt",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

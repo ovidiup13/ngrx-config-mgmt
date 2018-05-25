@@ -14,6 +14,12 @@ Create a _ConfigService_ that loads the file using the Angular _HttpClient_ and 
 
 Dispatch an NGRX _Action_ in the `app-component.ts` file. You should be able to access all configuration values anywhere in the application by injecting the store with the config state in any component constructor.
 
+Once you build the app, the `config.json` file will be available in the `dist/ngrx-config-mgmt/assets/config/config.json`. Since you only need the `dist` folder when serving the app via NGINX, you can easily mount a Kubernetes volume on that path and pass your own configuration.
+
+## In depth
+
+**TODO**: Add in-depth explanation...
+
 ## References
 
 I was having problems with dockerizing an Angular app and running it in a Kubernetes cluster. I had no clue on how to use the same Docker image for my Angular app and change its configuration at run-time. Luckily I got inspired by some discussion and a blog post by Ahmed Mansour:
