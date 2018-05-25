@@ -6,6 +6,8 @@ It is a sort of work around the `src/environments/` files, which must have the e
 
 This project might be useful for anyone who wants to use Kubernetes and a dockerized Angular app running inside a NGINX container.
 
+**WARNING**: This is not a solution for managing secrets. You might not want to use this method if you are sharing sensitive information.
+
 ## TLDR
 
 In short, create a _config.json_ file in `src/assets/config` with all your environment variables. Make sure to _gitignore_ it.
