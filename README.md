@@ -1,27 +1,22 @@
-# Angular6App
+# NGRX Configuration Management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
+This is a demo project that shows how you can dynamically load environment variables after the Angular CLI compilation phase.
 
-## Development server
+It is a sort of work around the `src/environments/` files, which must have the environment variables stored at compile time.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project might be useful for anyone who wants to use Kubernetes and a dockerized Angular app running inside a NGINX container.
 
-## Code scaffolding
+## TLDR
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+In short, create a _config.json_ file in `src/assets/config` with all your environment variables. Make sure to _gitignore_ it.
 
-## Build
+Create a _ConfigService_ that loads the file using the Angular _HttpClient_ and store all values inside an NGRX store.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Dispatch an NGRX _Action_ in the `app-component.ts` file. You should be able to access all configuration values anywhere in the application by injecting the store with the config state in any component constructor.
 
-## Running unit tests
+## References
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+I was having problems with dockerizing an Angular app and running it in a Kubernetes cluster. I had no clue on how to use the same Docker image for my Angular app and change its configuration at run-time. Luckily I got inspired by some discussion and a blog post by Ahmed Mansour:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* [Reddit Discussion](https://www.reddit.com/r/docker/comments/7uyghl/how_to_pass_environment_variables_to_a_frontend/)
+* [Ahmed Mansour - How to add environment variables to Angular app at run-time](https://www.ahmedmansour.me/how-to-add-environment-variables-to-angular-app-on-run-time/)
