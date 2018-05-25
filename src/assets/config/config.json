@@ -1,3 +1,4 @@
 {
-  "SERVER_API": "/api/1/"
+  "SERVER_API": "/api/1/",
+  "ENCRYPTED_API_KEY": "U2FsdGVkX1/JHQoCr+gu1wR3f8NFFKHC1R5MO4XDvVQ="
 }
