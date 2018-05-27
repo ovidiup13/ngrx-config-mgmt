@@ -14,7 +14,7 @@ export class ConfigInitialise implements Action {
 
 export class ConfigInitialiseSuccess implements Action {
   readonly type: string = ConfigActionTypes.INIT_SUCCESSFUL;
-  constructor(readonly payload: EnvConfig) {}
+  constructor(readonly payload: string) {}
 }
 
 export class ConfigInitialiseFailed implements Action {

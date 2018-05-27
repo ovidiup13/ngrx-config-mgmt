@@ -24,18 +24,28 @@ export function reducer(state = initialState, action: Action) {
   switch (action.type) {
     case ConfigActionTypes.INIT_SUCCESSFUL: {
       const payload = (action as ConfigInitialiseSuccess).payload;
+      const decrypted = CryptoJS.AES.decrypt(
+        payload,
+        environment.secretMessage
+      ).toString(CryptoJS.enc.Utf8);
+
+      const config = JSON.parse(decrypted);
+      console.log(config);
 
       // decrypt config key
+
       const secretApiKey = CryptoJS.AES.decrypt(
-        payload["ENCRYPTED_API_KEY"],
+        config["ENCRYPTED_API_KEY"],
         environment.secretMessage
       ).toString(CryptoJS.enc.Utf8);
 
       return {
-        serverApi: payload["SERVER_API"],
+        ...state,
+        serverApi: config["SERVER_API"],
         secretApiKey
       };
     }
+
     default: {
       return state;
     }

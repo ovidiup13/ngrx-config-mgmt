@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Effect, Actions } from "@ngrx/effects";
+import { Actions, Effect } from "@ngrx/effects";
+import { Observable, of } from "rxjs";
+import { catchError, map, switchMap } from "rxjs/operators";
+import { ConfigService } from "../../../config/config.service";
 import {
   ConfigActionTypes,
   ConfigInitialise,
-  ConfigInitialiseSuccess,
-  ConfigInitialiseFailed
+  ConfigInitialiseFailed,
+  ConfigInitialiseSuccess
 } from "../actions";
-import { switchMap, map, catchError } from "rxjs/operators";
-import { ConfigService } from "../../../config/config.service";
-import { Observable, of } from "rxjs";
 import { EnvConfig } from "../models/env-config.model";
 
 @Injectable()
@@ -24,10 +24,11 @@ export class ConfigEffects {
     .pipe(
       switchMap((action: ConfigInitialise) => {
         return this.configService.loadConfig().pipe(
-          map((config: EnvConfig) => {
+          map((config: string) => {
             return new ConfigInitialiseSuccess(config);
           }),
           catchError((error: any) => {
+            console.error(error);
             return of(new ConfigInitialiseFailed(error));
           })
         );
